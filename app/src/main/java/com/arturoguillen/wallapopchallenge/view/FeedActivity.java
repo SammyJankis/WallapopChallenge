@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.arturoguillen.wallapopchallenge.R;
+import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -23,4 +24,10 @@ public class FeedActivity extends BaseActivity {
 
         ButterKnife.bind(this);
     }
+
+    @Override
+    protected void injectComponent(FeedComponent component) {
+        component.inject(this);
+    }
+
 }
