@@ -2,20 +2,48 @@ package com.arturoguillen.wallapopchallenge.presenter;
 
 import android.os.Bundle;
 
+import com.arturoguillen.wallapopchallenge.entity.Comic;
+import com.arturoguillen.wallapopchallenge.model.MarvelModel;
 import com.arturoguillen.wallapopchallenge.view.FeedView;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by artu on 3/8/17.
  */
 
-public class FeedPresenter implements Presenter<FeedView> {
+public class FeedPresenter extends BasePresenter implements PresenterInterface<FeedView> {
 
     private FeedView view;
 
+    private Disposable getComicsDisposable;
+
+    @Inject
+    public MarvelModel marvelModel;
+
     @Inject
     public FeedPresenter() {
+    }
+
+    public void getComicsForCharacter(int characterId) {
+        view.showProgressFooter();
+        getComicsDisposable = marvelModel.getComicsForCharacter(characterId, new MarvelModel.ResponseObserver() {
+            @Override
+            public void onCompleted(ArrayList<Comic> comics) {
+                view.hideProgressFooter();
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                view.hideProgressFooter();
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
@@ -26,6 +54,8 @@ public class FeedPresenter implements Presenter<FeedView> {
     @Override
     public void detachView() {
         this.view = null;
+        if (getComicsDisposable != null)
+            getComicsDisposable.dispose();
     }
 
     @Override
