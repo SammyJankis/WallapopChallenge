@@ -5,4 +5,8 @@ package com.arturoguillen.wallapopchallenge.view;
  */
 
 public interface FeedView {
+
+    void showProgressFooter();
+
+    void hideProgressFooter();
 }
