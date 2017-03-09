@@ -61,6 +61,21 @@ public class FeedActivity extends BaseActivity implements FeedView {
             public void onRetrieveData() {
                 retrieveMoreData();
             }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                switch (newState) {
+                    case RecyclerView.SCROLL_STATE_DRAGGING:
+                    case RecyclerView.SCROLL_STATE_SETTLING:
+                        picasso.pauseTag(Constants.FEED_TAG);
+                        break;
+                    case RecyclerView.SCROLL_STATE_IDLE:
+                    default:
+                        picasso.resumeTag(Constants.FEED_TAG);
+                        break;
+                }
+            }
         });
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
     }
