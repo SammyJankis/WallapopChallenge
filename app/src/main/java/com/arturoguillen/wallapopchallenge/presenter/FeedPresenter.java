@@ -2,6 +2,7 @@ package com.arturoguillen.wallapopchallenge.presenter;
 
 import android.os.Bundle;
 
+import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.model.MarvelModel;
 import com.arturoguillen.wallapopchallenge.view.FeedView;
@@ -29,18 +30,19 @@ public class FeedPresenter extends BasePresenter implements PresenterInterface<F
     public FeedPresenter() {
     }
 
-    public void getComicsForCharacter(int characterId) {
+    public void getComicsForCharacter(int characterId, int offset) {
         view.showProgressFooter();
-        getComicsDisposable = marvelModel.getComicsForCharacter(characterId, new MarvelModel.ResponseObserver() {
+        getComicsDisposable = marvelModel.getComicsForCharacter(characterId, offset, new MarvelModel.ResponseObserver() {
             @Override
             public void onCompleted(ArrayList<Comic> comics) {
                 view.hideProgressFooter();
-
+                view.showMoreData(comics);
             }
 
             @Override
             public void onError(Throwable e) {
                 view.hideProgressFooter();
+                view.showMessage(R.string.try_again);
                 e.printStackTrace();
             }
         });

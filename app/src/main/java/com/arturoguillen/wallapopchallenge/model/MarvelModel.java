@@ -25,8 +25,6 @@ public class MarvelModel extends BaseModel {
     @Inject
     public MarvelApi marvelApi;
 
-    int offset = 0;
-
     public
     @Inject
     MarvelModel() {
@@ -40,7 +38,7 @@ public class MarvelModel extends BaseModel {
         void onError(Throwable e);
     }
 
-    public Disposable getComicsForCharacter(int characterId, final ResponseObserver observer) {
+    public Disposable getComicsForCharacter(int characterId, int offset, final ResponseObserver observer) {
 
         String timestamp = String.valueOf(System.currentTimeMillis());
         try {
@@ -54,7 +52,6 @@ public class MarvelModel extends BaseModel {
                     subscribeWith(new DisposableObserver<ComicDataWrapper>() {
                         @Override
                         public void onNext(ComicDataWrapper comicDataWrapper) {
-                            offset = offset + comicDataWrapper.getData().getCount();
                             observer.onCompleted(comicDataWrapper.getData().getResults());
                         }
 
