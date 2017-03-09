@@ -18,6 +18,7 @@ public interface MarvelApi {
             @Path("characterId") int characterId,
             @Query("apikey") String apiKey,
             @Query("ts") String timestamp,
-            @Query("hash") String hash);
+            @Query("hash") String hash,
+            @Query("offset") String offset);
 
 }

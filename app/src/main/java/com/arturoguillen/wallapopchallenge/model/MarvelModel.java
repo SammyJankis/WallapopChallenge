@@ -38,13 +38,13 @@ public class MarvelModel extends BaseModel {
         void onError(Throwable e);
     }
 
-    public Disposable getComicsForCharacter(int characterId, final ResponseObserver observer) {
+    public Disposable getComicsForCharacter(int characterId, int offset, final ResponseObserver observer) {
 
         String timestamp = String.valueOf(System.currentTimeMillis());
         try {
             String hash = md5(timestamp + PrivateConstants.PRIVATE_KEY + PrivateConstants.PUBLIC_KEY);
 
-            Observable<ComicDataWrapper> observable = marvelApi.getComicsByCharacter(characterId, PrivateConstants.PUBLIC_KEY, timestamp, hash);
+            Observable<ComicDataWrapper> observable = marvelApi.getComicsByCharacter(characterId, PrivateConstants.PUBLIC_KEY, timestamp, hash, String.valueOf(offset));
 
             return observable.
                     subscribeOn(Schedulers.io()).
