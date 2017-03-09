@@ -33,6 +33,7 @@ public class TestMarvelModule {
                         (Integer) Mockito.any(),
                         (String) Mockito.any(),
                         (String) Mockito.any(),
+                        (String) Mockito.any(),
                         (String) Mockito.any()
                 )
         ).thenReturn(Observable.just(fakeComicDataWrapper));
