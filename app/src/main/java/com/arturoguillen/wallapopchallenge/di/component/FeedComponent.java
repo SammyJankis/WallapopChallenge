@@ -1,5 +1,6 @@
 package com.arturoguillen.wallapopchallenge.di.component;
 
+import com.arturoguillen.wallapopchallenge.di.module.MarvelModule;
 import com.arturoguillen.wallapopchallenge.view.FeedActivity;
 
 import javax.inject.Singleton;
@@ -11,7 +12,7 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {})
+@Component(modules = {MarvelModule.class})
 public interface FeedComponent {
     void inject(FeedActivity feedActivity);
 }
