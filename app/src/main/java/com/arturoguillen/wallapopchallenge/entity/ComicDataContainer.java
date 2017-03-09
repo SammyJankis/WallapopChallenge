@@ -23,6 +23,9 @@ public class ComicDataContainer implements Serializable {
     @SerializedName("total")
     private int total;
 
+    @SerializedName("count")
+    private int count;
+
     @SerializedName("results")
     private ArrayList<Comic> results;
 
@@ -56,5 +59,13 @@ public class ComicDataContainer implements Serializable {
 
     public void setResults(ArrayList<Comic> results) {
         this.results = results;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

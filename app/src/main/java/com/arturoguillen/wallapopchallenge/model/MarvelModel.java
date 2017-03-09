@@ -25,6 +25,8 @@ public class MarvelModel extends BaseModel {
     @Inject
     public MarvelApi marvelApi;
 
+    int offset = 0;
+
     public
     @Inject
     MarvelModel() {
@@ -44,7 +46,7 @@ public class MarvelModel extends BaseModel {
         try {
             String hash = md5(timestamp + PrivateConstants.PRIVATE_KEY + PrivateConstants.PUBLIC_KEY);
 
-            Observable<ComicDataWrapper> observable = marvelApi.getComicsByCharacter(characterId, PrivateConstants.PUBLIC_KEY, timestamp, hash);
+            Observable<ComicDataWrapper> observable = marvelApi.getComicsByCharacter(characterId, PrivateConstants.PUBLIC_KEY, timestamp, hash, String.valueOf(offset));
 
             return observable.
                     subscribeOn(Schedulers.io()).
@@ -52,6 +54,7 @@ public class MarvelModel extends BaseModel {
                     subscribeWith(new DisposableObserver<ComicDataWrapper>() {
                         @Override
                         public void onNext(ComicDataWrapper comicDataWrapper) {
+                            offset = offset + comicDataWrapper.getData().getCount();
                             observer.onCompleted(comicDataWrapper.getData().getResults());
                         }
 
