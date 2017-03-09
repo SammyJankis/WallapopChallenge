@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -22,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetModule {
 
     String baseurl;
+    private static final long TIMEOUT = 30;
 
     public NetModule() {
         baseurl = Constants.BASE_URL;
@@ -51,6 +54,8 @@ public class NetModule {
     OkHttpClient provideOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
         clientBuilder.addInterceptor(httpLoggingInterceptor);
+        clientBuilder.connectTimeout(TIMEOUT, TimeUnit.SECONDS);
+        clientBuilder.readTimeout(TIMEOUT, TimeUnit.SECONDS);
         return clientBuilder.build();
     }
 
