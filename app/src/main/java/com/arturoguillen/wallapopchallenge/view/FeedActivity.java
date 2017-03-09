@@ -12,6 +12,7 @@ import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.di.component.FeedComponent;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.presenter.FeedPresenter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,9 @@ public class FeedActivity extends BaseActivity implements FeedView {
     @Inject
     FeedPresenter presenter;
 
+    @Inject
+    Picasso picasso;
+
     @BindView(R.id.recyclerview_feed)
     RecyclerView recyclerView;
 
@@ -45,10 +49,11 @@ public class FeedActivity extends BaseActivity implements FeedView {
         ButterKnife.bind(this);
 
         setupRecyclerView();
+        presenter.getComicsForCharacter(Constants.CAPTAIN_AMERICA_ID, 0);
     }
 
     private void setupRecyclerView() {
-        FeedAdapter feedAdapter = new FeedAdapter();
+        FeedAdapter feedAdapter = new FeedAdapter(picasso);
         recyclerView.setAdapter(feedAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
@@ -58,12 +63,6 @@ public class FeedActivity extends BaseActivity implements FeedView {
             }
         });
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        retrieveMoreData();
     }
 
     private void retrieveMoreData() {
