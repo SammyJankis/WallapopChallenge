@@ -25,63 +25,68 @@ public class TestMarvelModule {
 
     @Provides
     @Singleton
-    MarvelApi provideMarvelApi(ComicDataWrapper fakeComicDataWrapper) {
+    MarvelApi provideFakeMarvelApi(ComicDataWrapper fakeComicDataWrapper) {
         MarvelApi mockMarvelApi = Mockito.mock(MarvelApi.class);
 
         Mockito.when(
                 mockMarvelApi.getComicsByCharacter(
-                        (Integer) Mockito.any(),
-                        (String) Mockito.any(),
-                        (String) Mockito.any(),
-                        (String) Mockito.any(),
-                        (String) Mockito.any()
+                        Mockito.anyInt(),
+                        Mockito.anyString(),
+                        Mockito.anyString(),
+                        Mockito.anyString(),
+                        Mockito.anyString()
                 )
         ).thenReturn(Observable.just(fakeComicDataWrapper));
         return mockMarvelApi;
     }
 
     @Provides
-    ComicDataWrapper provideFakeComicDataWrapper() {
-        ComicDataWrapper comicDataWrapper = new ComicDataWrapper();
-        comicDataWrapper.setData(new ComicDataContainer());
+    ComicDataWrapper provideFakeComicDataWrapper(ComicDataContainer fakeComicDataContainer) {
+        ComicDataWrapper fakeComicDataWrapper = new ComicDataWrapper();
+        fakeComicDataWrapper.setData(fakeComicDataContainer);
 
-        return comicDataWrapper;
+        return fakeComicDataWrapper;
     }
 
     @Provides
-    ComicDataContainer provideFakeComicDataContainer() {
-        ComicDataContainer comicDataContainer = new ComicDataContainer();
-        comicDataContainer.setResults(new ArrayList<Comic>());
+    ComicDataContainer provideFakeComicDataContainer(ArrayList<Comic> fakeComics) {
+        ComicDataContainer fakeComicDataContainer = new ComicDataContainer();
+        fakeComicDataContainer.setResults(fakeComics);
 
-        return comicDataContainer;
+        return fakeComicDataContainer;
     }
 
     @Provides
-    ArrayList<Comic> provideFakeComicArray() {
-        ArrayList<Comic> comicArrayResponse = new ArrayList<>();
-        comicArrayResponse.add(new Comic());
-        comicArrayResponse.add(new Comic());
+    ArrayList<Comic> provideFakeComics(Comic fakeComic) {
+        ArrayList<Comic> fakeComics = new ArrayList<>();
+        fakeComics.add(fakeComic);
+        fakeComics.add(fakeComic);
 
-        return comicArrayResponse;
+        return fakeComics;
     }
 
     @Provides
-    Comic provideFakeComic() {
-        Comic comic = new Comic();
-        comic.setId(1);
-        comic.setDescription("Description");
-        comic.setDigitalId(1);
-        comic.setIssueNumber(1.0);
-        comic.setTitle("Title");
-        comic.setVariantDescription("VariantDescription");
-        comic.setThumbnail(new Image());
+    Comic provideFakeComic(ArrayList<Image> fakeImages) {
+        Comic fakeComic = new Comic();
+        fakeComic.setId(1);
+        fakeComic.setDescription("Description");
+        fakeComic.setDigitalId(1);
+        fakeComic.setIssueNumber(1.0);
+        fakeComic.setTitle("Title");
+        fakeComic.setVariantDescription("VariantDescription");
+        fakeComic.setThumbnail(fakeImages.get(0));
+        fakeComic.setImages(fakeImages);
 
-        ArrayList<Image> fakeImagesArray = new ArrayList<>();
-        fakeImagesArray.add(new Image());
-        fakeImagesArray.add(new Image());
-        comic.setImages(fakeImagesArray);
+        return fakeComic;
+    }
 
-        return comic;
+    @Provides
+    ArrayList<Image> provideFakeImages(Image fakeImage) {
+        ArrayList<Image> fakeImages = new ArrayList<>();
+        fakeImages.add(fakeImage);
+        fakeImages.add(fakeImage);
+
+        return fakeImages;
     }
 
     @Provides
@@ -89,6 +94,7 @@ public class TestMarvelModule {
         Image fakeImage = new Image();
         fakeImage.setExtension("Extension");
         fakeImage.setPath("Path");
+
         return fakeImage;
     }
 

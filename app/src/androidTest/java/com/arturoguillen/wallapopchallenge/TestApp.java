@@ -14,7 +14,7 @@ public class TestApp extends App {
     protected FeedComponent createComponent() {
         return DaggerTestFeedComponent.builder()
                 .testMarvelModule(new TestMarvelModule())
-                .testImageRequestModule(new TestImageRequestModule())
+                .testImageRequestModule(new TestImageRequestModule(this))
                 .build();
     }
 }
