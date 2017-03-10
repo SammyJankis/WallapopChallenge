@@ -9,4 +9,6 @@ public class Constants {
     public static final int CAPTAIN_AMERICA_ID = 1009220;
 
 
+    //PICASSO TAG
+    public static final String FEED_TAG = "FEED_TAG";
 }
