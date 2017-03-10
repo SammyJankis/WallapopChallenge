@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -17,14 +18,17 @@ public class FeedAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Comic> feedContent;
 
-    public FeedAdapter() {
+    Picasso picasso;
+
+    public FeedAdapter(Picasso picasso) {
         this.feedContent = new ArrayList<>();
+        this.picasso = picasso;
     }
 
     public void appendFeedContent(ArrayList<Comic> feedContent) {
         int previousSize = this.feedContent.size();
         this.feedContent.addAll(feedContent);
-        notifyItemRangeInserted(previousSize, this.feedContent.size());
+        notifyItemRangeInserted(previousSize, feedContent.size());
     }
 
     public ArrayList<Comic> getFeedContent() {
@@ -35,7 +39,7 @@ public class FeedAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ComicCard(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_comic, parent, false));
+                .inflate(R.layout.card_comic, parent, false), picasso);
     }
 
     @Override

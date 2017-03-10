@@ -1,5 +1,6 @@
 package com.arturoguillen.wallapopchallenge.di.component;
 
+import com.arturoguillen.wallapopchallenge.di.module.TestImageRequestModule;
 import com.arturoguillen.wallapopchallenge.di.module.TestMarvelModule;
 
 import javax.inject.Singleton;
@@ -11,6 +12,6 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {TestMarvelModule.class})
+@Component(modules = {TestMarvelModule.class, TestImageRequestModule.class})
 public interface TestFeedComponent extends FeedComponent {
 }

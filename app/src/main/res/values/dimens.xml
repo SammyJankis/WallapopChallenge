@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="card_corner_radius">0dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
+    <dimen name="card_padding_low">3dp</dimen>
+    <dimen name="card_padding_high">20dp</dimen>
+    <dimen name="card_width">150dp</dimen>
+    <dimen name="card_height">225dp</dimen>
+
+    <dimen name="text_size_high">13sp</dimen>
+
+
+</resources>
