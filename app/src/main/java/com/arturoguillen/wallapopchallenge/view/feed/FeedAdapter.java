@@ -1,4 +1,4 @@
-package com.arturoguillen.wallapopchallenge.view;
+package com.arturoguillen.wallapopchallenge.view.feed;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,11 +18,13 @@ public class FeedAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Comic> feedContent;
 
-    Picasso picasso;
+    private Picasso picasso;
+    private FeedItemOnClickListener feedItemOnClickListener;
 
-    public FeedAdapter(Picasso picasso) {
+    public FeedAdapter(Picasso picasso, FeedItemOnClickListener feedItemOnClickListener) {
         this.feedContent = new ArrayList<>();
         this.picasso = picasso;
+        this.feedItemOnClickListener = feedItemOnClickListener;
     }
 
     public void appendFeedContent(ArrayList<Comic> feedContent) {
@@ -39,7 +41,7 @@ public class FeedAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ComicCard(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_comic, parent, false), picasso);
+                .inflate(R.layout.card_comic, parent, false), picasso, feedItemOnClickListener);
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.arturoguillen.wallapopchallenge.di.component;
 
 import com.arturoguillen.wallapopchallenge.di.module.ImageRequestModule;
 import com.arturoguillen.wallapopchallenge.di.module.MarvelModule;
-import com.arturoguillen.wallapopchallenge.view.FeedActivity;
+import com.arturoguillen.wallapopchallenge.view.feed.FeedActivity;
 
 import javax.inject.Singleton;
 

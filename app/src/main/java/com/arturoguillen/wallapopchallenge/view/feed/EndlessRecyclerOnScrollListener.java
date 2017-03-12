@@ -1,4 +1,4 @@
-package com.arturoguillen.wallapopchallenge.view;
+package com.arturoguillen.wallapopchallenge.view.feed;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

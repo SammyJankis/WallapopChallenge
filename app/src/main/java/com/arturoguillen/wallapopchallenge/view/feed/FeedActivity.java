@@ -1,4 +1,4 @@
-package com.arturoguillen.wallapopchallenge.view;
+package com.arturoguillen.wallapopchallenge.view.feed;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,12 +6,15 @@ import android.support.annotation.StringRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.view.View;
 
 import com.arturoguillen.wallapopchallenge.Constants;
 import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.di.component.FeedComponent;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.presenter.FeedPresenter;
+import com.arturoguillen.wallapopchallenge.view.BaseActivity;
+import com.arturoguillen.wallapopchallenge.view.detail.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ import butterknife.ButterKnife;
  * Created by artu on 3/8/17.
  */
 
-public class FeedActivity extends BaseActivity implements FeedView {
+public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnClickListener {
 
     private static final String RECYCLERVIEW_STATE = "RECYCLERVIEW_STATE";
     private static final String RECYCLEVIEW_CONTENT = "RECYCLEVIEW_CONTENT";
@@ -53,7 +56,7 @@ public class FeedActivity extends BaseActivity implements FeedView {
     }
 
     private void setupRecyclerView() {
-        FeedAdapter feedAdapter = new FeedAdapter(picasso);
+        FeedAdapter feedAdapter = new FeedAdapter(picasso, this);
         recyclerView.setAdapter(feedAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
@@ -136,5 +139,10 @@ public class FeedActivity extends BaseActivity implements FeedView {
     public void showMoreData(ArrayList<Comic> comics) {
         FeedAdapter adapter = (FeedAdapter) recyclerView.getAdapter();
         adapter.appendFeedContent(comics);
+    }
+
+    @Override
+    public void onClickFeedItem(View v, Comic comic) {
+        startActivity(DetailActivity.createIntent(FeedActivity.this, comic));
     }
 }

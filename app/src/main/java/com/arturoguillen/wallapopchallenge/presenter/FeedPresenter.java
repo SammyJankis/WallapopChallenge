@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.model.MarvelModel;
-import com.arturoguillen.wallapopchallenge.view.FeedView;
+import com.arturoguillen.wallapopchallenge.view.feed.FeedView;
 
 import java.util.ArrayList;
 

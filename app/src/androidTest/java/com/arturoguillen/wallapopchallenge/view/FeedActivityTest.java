@@ -5,6 +5,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.arturoguillen.wallapopchallenge.R;
+import com.arturoguillen.wallapopchallenge.view.feed.FeedActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
