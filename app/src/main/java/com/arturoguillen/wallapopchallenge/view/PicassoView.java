@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -51,9 +52,10 @@ public class PicassoView extends LinearLayout {
     public void init(final Picasso picasso, final String path) {
         picassoImage.setVisibility(View.GONE);
         picassoProgress.setVisibility(View.VISIBLE);
-        picassoProgress.post(new Runnable() {
+        picassoProgress.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
-            public void run() {
+            public boolean onPreDraw() {
+                picassoProgress.getViewTreeObserver().removeOnPreDrawListener(this);
                 picasso.load(path)
                         .resize(picassoProgress.getWidth(), picassoProgress.getHeight())
                         .noFade()
@@ -72,6 +74,7 @@ public class PicassoView extends LinearLayout {
                                 picassoProgress.setVisibility(View.GONE);
                             }
                         });
+                return true;
             }
         });
     }
