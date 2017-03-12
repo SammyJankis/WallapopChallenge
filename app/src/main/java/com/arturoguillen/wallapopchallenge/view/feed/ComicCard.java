@@ -2,15 +2,12 @@ package com.arturoguillen.wallapopchallenge.view.feed;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.arturoguillen.wallapopchallenge.Constants;
 import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
-import com.squareup.picasso.Callback;
+import com.arturoguillen.wallapopchallenge.view.PicassoView;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -31,11 +28,8 @@ public class ComicCard extends RecyclerView.ViewHolder {
     @BindView(R.id.title)
     TextView title;
 
-    @BindView(R.id.image)
-    ImageView imageView;
-
-    @BindView(R.id.progress)
-    ProgressBar progress;
+    @BindView(R.id.feed_picasso)
+    PicassoView feedPicasso;
 
     private Picasso picasso;
     private FeedItemOnClickListener feedItemOnClickListener;
@@ -49,31 +43,7 @@ public class ComicCard extends RecyclerView.ViewHolder {
 
     void fillComicCard(final Comic comic) {
         title.setText(comic.getTitle());
-        imageView.setVisibility(View.GONE);
-        progress.setVisibility(View.VISIBLE);
-        progress.post(new Runnable() {
-            @Override
-            public void run() {
-                picasso.load(comic.getThumbnail().getPath() + ASPECT_RATIO + comic.getThumbnail().getExtension())
-                        .resize(progress.getWidth(), progress.getHeight())
-                        .noFade()
-                        .error(R.drawable.noimage)
-                        .tag(Constants.FEED_TAG)
-                        .into(imageView, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                imageView.setVisibility(View.VISIBLE);
-                                progress.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onError() {
-                                imageView.setVisibility(View.VISIBLE);
-                                progress.setVisibility(View.GONE);
-                            }
-                        });
-            }
-        });
+        feedPicasso.init(picasso, comic.getThumbnail().getPath() + ASPECT_RATIO + comic.getThumbnail().getExtension());
         layoutContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
