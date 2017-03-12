@@ -4,17 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.arturoguillen.wallapopchallenge.Constants;
 import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.di.component.FeedComponent;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.view.BaseActivity;
-import com.squareup.picasso.Callback;
+import com.arturoguillen.wallapopchallenge.view.PicassoView;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -32,17 +28,14 @@ public class DetailActivity extends BaseActivity {
 
     private static final String ASPECT_RATIO = "/landscape_incredible.";
 
-    @BindView(R.id.detail_image)
-    ImageView detailImage;
-
-    @BindView(R.id.progress_detail)
-    ProgressBar detailProgress;
-
     @BindView(R.id.detail_title)
     TextView detailTitle;
 
     @BindView(R.id.detail_description)
     TextView detailDescription;
+
+    @BindView(R.id.detail_picasso)
+    PicassoView picassoView;
 
     @Inject
     Picasso picasso;
@@ -71,32 +64,7 @@ public class DetailActivity extends BaseActivity {
     private void initUI(final Comic comic) {
         detailTitle.setText(comic.getTitle());
         detailDescription.setText(comic.getDescription());
-        detailImage.setVisibility(View.GONE);
-        detailProgress.setVisibility(View.VISIBLE);
-        detailProgress.post(new Runnable() {
-            @Override
-            public void run() {
-                picasso.load(comic.getThumbnail().getPath() + ASPECT_RATIO + comic.getThumbnail().getExtension())
-                        .resize(detailProgress.getWidth(), detailProgress.getHeight())
-                        .noFade()
-                        .error(R.drawable.noimage)
-                        .tag(Constants.FEED_TAG)
-                        .into(detailImage, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                detailImage.setVisibility(View.VISIBLE);
-                                detailProgress.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onError() {
-                                detailImage.setVisibility(View.VISIBLE);
-                                detailProgress.setVisibility(View.GONE);
-                            }
-                        });
-            }
-        });
-
+        picassoView.init(picasso, comic.getThumbnail().getPath() + ASPECT_RATIO + comic.getThumbnail().getExtension());
     }
 
     private Comic getComicExtra(Bundle savedInstanceState) {
@@ -117,14 +85,6 @@ public class DetailActivity extends BaseActivity {
     @Override
     protected void injectComponent(FeedComponent component) {
         component.inject(this);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState != null) {
-
-        }
     }
 
     @Override
