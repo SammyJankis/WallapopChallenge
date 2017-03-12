@@ -57,26 +57,66 @@ public class TestMarvelModule {
     }
 
     @Provides
-    ArrayList<Comic> provideFakeComics(Comic fakeComic) {
+    ArrayList<Comic> provideFakeComics(Comic fakeComic0,
+                                       Comic fakeComic1,
+                                       Comic fakeComic2,
+                                       Comic fakeComic3,
+                                       Comic fakeComic4,
+                                       Comic fakeComic5,
+                                       Comic fakeComic6,
+                                       Comic fakeComic7,
+                                       Comic fakeComic8,
+                                       Comic fakeComic9,
+                                       Comic fakeComic10,
+                                       Comic fakeComic11,
+                                       Comic fakeComic12,
+                                       Comic fakeComic13,
+                                       Comic fakeComic14,
+                                       Comic fakeComic15,
+                                       Comic fakeComic16,
+                                       Comic fakeComic17,
+                                       Comic fakeComic18,
+                                       Comic fakeComic19) {
+
         ArrayList<Comic> fakeComics = new ArrayList<>();
-        fakeComics.add(fakeComic);
-        fakeComics.add(fakeComic);
+        fakeComics.add(fakeComic0);
+        fakeComics.add(fakeComic1);
+        fakeComics.add(fakeComic2);
+        fakeComics.add(fakeComic3);
+        fakeComics.add(fakeComic4);
+        fakeComics.add(fakeComic5);
+        fakeComics.add(fakeComic6);
+        fakeComics.add(fakeComic7);
+        fakeComics.add(fakeComic8);
+        fakeComics.add(fakeComic9);
+        fakeComics.add(fakeComic10);
+        fakeComics.add(fakeComic11);
+        fakeComics.add(fakeComic12);
+        fakeComics.add(fakeComic13);
+        fakeComics.add(fakeComic14);
+        fakeComics.add(fakeComic15);
+        fakeComics.add(fakeComic16);
+        fakeComics.add(fakeComic17);
+        fakeComics.add(fakeComic18);
+        fakeComics.add(fakeComic19);
 
         return fakeComics;
     }
 
+    int counter = 0;
+
     @Provides
     Comic provideFakeComic(ArrayList<Image> fakeImages) {
         Comic fakeComic = new Comic();
-        fakeComic.setId(1);
-        fakeComic.setDescription("Description");
-        fakeComic.setDigitalId(1);
-        fakeComic.setIssueNumber(1.0);
-        fakeComic.setTitle("Title");
-        fakeComic.setVariantDescription("VariantDescription");
+        fakeComic.setId(counter);
+        fakeComic.setDescription("Description" + counter);
+        fakeComic.setDigitalId(counter);
+        fakeComic.setIssueNumber((double) counter);
+        fakeComic.setTitle("Title" + counter);
+        fakeComic.setVariantDescription("VariantDescription" + counter);
         fakeComic.setThumbnail(fakeImages.get(0));
         fakeComic.setImages(fakeImages);
-
+        counter++;
         return fakeComic;
     }
 
