@@ -3,12 +3,19 @@
 
     <dimen name="card_corner_radius">0dp</dimen>
     <dimen name="card_elevation">3dp</dimen>
-    <dimen name="card_padding_low">3dp</dimen>
-    <dimen name="card_padding_high">20dp</dimen>
     <dimen name="card_width">150dp</dimen>
     <dimen name="card_height">225dp</dimen>
 
-    <dimen name="text_size_high">13sp</dimen>
+    <dimen name="detail_height">200dp</dimen>
+
+
+    <dimen name="padding_low">5dp</dimen>
+    <dimen name="padding_med">10dp</dimen>
+    <dimen name="padding_high">20dp</dimen>
+
+    <dimen name="text_size_high">20sp</dimen>
+    <dimen name="text_size_medium">15sp</dimen>
+    <dimen name="text_size_low">10sp</dimen>
 
 
 </resources>

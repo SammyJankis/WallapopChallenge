@@ -51,7 +51,7 @@ public class ComicCard extends RecyclerView.ViewHolder {
         title.setText(comic.getTitle());
         imageView.setVisibility(View.GONE);
         progress.setVisibility(View.VISIBLE);
-        imageView.post(new Runnable() {
+        progress.post(new Runnable() {
             @Override
             public void run() {
                 picasso.load(comic.getThumbnail().getPath() + ASPECT_RATIO + comic.getThumbnail().getExtension())
@@ -77,7 +77,7 @@ public class ComicCard extends RecyclerView.ViewHolder {
         layoutContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                feedItemOnClickListener.onClickFeedItem(itemView,comic);
+                feedItemOnClickListener.onClickFeedItem(itemView, comic);
             }
         });
 

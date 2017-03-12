@@ -10,8 +10,8 @@
     card_view:cardMaxElevation="@dimen/card_elevation"
     card_view:cardPreventCornerOverlap="true"
     card_view:cardUseCompatPadding="false"
-    card_view:paddingEnd="@dimen/card_padding_low"
-    card_view:paddingStart="@dimen/card_padding_low">
+    card_view:paddingEnd="@dimen/padding_low"
+    card_view:paddingStart="@dimen/padding_low">
 
     <LinearLayout
         android:id="@+id/layout_content"
@@ -31,7 +31,7 @@
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
-            android:padding="@dimen/card_padding_high"
+            android:padding="@dimen/padding_high"
             android:visibility="visible" />
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity=""
-            android:padding="@dimen/card_padding_low"
+            android:padding="@dimen/padding_low"
             android:text="asd"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_high"
