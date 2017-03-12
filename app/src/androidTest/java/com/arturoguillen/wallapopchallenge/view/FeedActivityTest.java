@@ -1,12 +1,18 @@
 package com.arturoguillen.wallapopchallenge.view;
 
 import android.content.Intent;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.arturoguillen.wallapopchallenge.R;
+import com.arturoguillen.wallapopchallenge.view.feed.ComicCard;
 import com.arturoguillen.wallapopchallenge.view.feed.FeedActivity;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +21,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by artu on 3/8/17.
@@ -29,11 +36,48 @@ public class FeedActivityTest {
             true,
             false);
 
-
     @Test
-    public void testRecyclerViewIsDisplayed() {
-        FeedActivity feedActivity = activityRule.launchActivity(new Intent());
+    public void testRecyclerView_IsDisplayed() {
+        activityRule.launchActivity(new Intent());
 
         onView(withId(R.id.recyclerview_feed)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void testRecyclerView_Position0_HasText() {
+        activityRule.launchActivity(new Intent());
+
+        onView(ViewMatchers.withId(R.id.recyclerview_feed))
+                .perform(RecyclerViewActions.scrollToHolder(isPosition(0)));
+
+        onView(withText("Title0")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testRecyclerView_Position19_HasText() {
+        activityRule.launchActivity(new Intent());
+
+        onView(ViewMatchers.withId(R.id.recyclerview_feed))
+                .perform(RecyclerViewActions.scrollToHolder(isPosition(19)));
+
+        onView(withText("Title19")).check(matches(isDisplayed()));
+    }
+
+    /**
+     * Matches the {@link com.arturoguillen.wallapopchallenge.view.feed.ComicCard}s in the middle of the list.
+     */
+    private static Matcher<ComicCard> isPosition(final int position) {
+        return new TypeSafeMatcher<ComicCard>() {
+            @Override
+            protected boolean matchesSafely(ComicCard comicCard) {
+                return comicCard.getLayoutPosition() == position;
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("item in position " + position);
+            }
+        };
+    }
+
 }
