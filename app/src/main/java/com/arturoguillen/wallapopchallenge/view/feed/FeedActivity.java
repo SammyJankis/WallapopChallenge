@@ -52,7 +52,15 @@ public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnCl
         ButterKnife.bind(this);
 
         setupRecyclerView();
-        presenter.getComicsForCharacter(Constants.CAPTAIN_AMERICA_ID, 0);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FeedAdapter adapter = (FeedAdapter) recyclerView.getAdapter();
+        if (adapter.getItemCount() == 0) {
+            presenter.getComicsForCharacter(Constants.CAPTAIN_AMERICA_ID, 0);
+        }
     }
 
     private void setupRecyclerView() {
