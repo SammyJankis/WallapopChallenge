@@ -1,8 +1,9 @@
-package com.arturoguillen.wallapopchallenge.view;
+package com.arturoguillen.wallapopchallenge.view.feed;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,6 +25,9 @@ public class ComicCard extends RecyclerView.ViewHolder {
 
     private static final String ASPECT_RATIO = "/portrait_incredible.";
 
+    @BindView(R.id.layout_content)
+    LinearLayout layoutContent;
+
     @BindView(R.id.title)
     TextView title;
 
@@ -34,11 +38,13 @@ public class ComicCard extends RecyclerView.ViewHolder {
     ProgressBar progress;
 
     private Picasso picasso;
+    private FeedItemOnClickListener feedItemOnClickListener;
 
-    public ComicCard(View itemView, Picasso picasso) {
+    public ComicCard(View itemView, Picasso picasso, FeedItemOnClickListener feedItemOnClickListener) {
         super(itemView);
         ButterKnife.bind(this, itemView);
         this.picasso = picasso;
+        this.feedItemOnClickListener = feedItemOnClickListener;
     }
 
     void fillComicCard(final Comic comic) {
@@ -66,6 +72,12 @@ public class ComicCard extends RecyclerView.ViewHolder {
                                 progress.setVisibility(View.GONE);
                             }
                         });
+            }
+        });
+        layoutContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                feedItemOnClickListener.onClickFeedItem(itemView,comic);
             }
         });
 
