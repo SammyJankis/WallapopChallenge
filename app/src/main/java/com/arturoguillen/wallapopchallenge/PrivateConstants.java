@@ -5,6 +5,10 @@ package com.arturoguillen.wallapopchallenge;
  */
 
 public class PrivateConstants {
+
+    /*TODO : ADD PRIVATE KEY HERE*/
     public static final String PRIVATE_KEY = "";
+
+    /*TODO : ADD PUBLIC KEY HERE*/
     public static final String PUBLIC_KEY = "";
 }
