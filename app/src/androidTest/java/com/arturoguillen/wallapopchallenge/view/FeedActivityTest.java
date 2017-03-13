@@ -9,6 +9,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
 
 import com.arturoguillen.wallapopchallenge.R;
+import com.arturoguillen.wallapopchallenge.view.detail.DetailActivity;
 import com.arturoguillen.wallapopchallenge.view.feed.ComicCard;
 import com.arturoguillen.wallapopchallenge.view.feed.FeedActivity;
 import com.arturoguillen.wallapopchallenge.view.feed.FeedAdapter;
@@ -24,6 +25,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -36,7 +38,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class FeedActivityTest {
 
-
     @Rule
     public ActivityTestRule<FeedActivity> activityRule = new ActivityTestRule<>(FeedActivity.class, false, false);
     @Rule
@@ -45,12 +46,14 @@ public class FeedActivityTest {
     @Test
     public void testRecyclerView_IsDisplayed() {
         activityRule.launchActivity(new Intent());
+
         onView(withId(R.id.recyclerview_feed)).check(matches(isDisplayed()));
     }
 
     @Test
     public void testRecyclerView_Position0_HasText() {
         activityRule.launchActivity(new Intent());
+
         onView(ViewMatchers.withId(R.id.recyclerview_feed))
                 .perform(RecyclerViewActions.scrollToHolder(isPosition(0)));
 
@@ -60,6 +63,7 @@ public class FeedActivityTest {
     @Test
     public void testRecyclerView_Position19_HasText() {
         activityRule.launchActivity(new Intent());
+
         onView(ViewMatchers.withId(R.id.recyclerview_feed))
                 .perform(RecyclerViewActions.scrollToHolder(isPosition(19)));
 
@@ -75,6 +79,16 @@ public class FeedActivityTest {
 
         RecyclerView recyclerView = (RecyclerView) feedActivity.findViewById(R.id.recyclerview_feed);
         intended(hasExtra("EXTRA_COMIC", ((FeedAdapter) recyclerView.getAdapter()).getFeedContent().get(0)));
+    }
+
+    @Test
+    public void testRecyclerView_Position0_click_then_DetailActivity_launched() {
+        intentsRule.launchActivity(new Intent());
+
+        onView(ViewMatchers.withId(R.id.recyclerview_feed))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        intended(hasComponent(DetailActivity.class.getName()));
     }
 
     private static Matcher<ComicCard> isPosition(final int position) {
