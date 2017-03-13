@@ -7,7 +7,7 @@
     <dimen name="card_height">225dp</dimen>
 
     <dimen name="detail_height">200dp</dimen>
-
+    <dimen name="progressfooter_square">50dp</dimen>
 
     <dimen name="padding_low">5dp</dimen>
     <dimen name="padding_med">10dp</dimen>

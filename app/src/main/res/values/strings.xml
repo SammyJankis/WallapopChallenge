@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">WallapopChallenge</string>
-    <string name="try_again">Press to try again</string>
+    <string name="try_again">Click here to try again</string>
 
 </resources>
