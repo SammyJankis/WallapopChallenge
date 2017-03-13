@@ -139,7 +139,10 @@ public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnCl
 
     @Override
     public void showMessage(@StringRes int stringId) {
+    }
 
+    @Override
+    public void hideMessage() {
     }
 
 

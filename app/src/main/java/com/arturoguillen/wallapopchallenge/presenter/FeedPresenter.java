@@ -36,6 +36,7 @@ public class FeedPresenter extends BasePresenter implements PresenterInterface<F
             @Override
             public void onCompleted(ArrayList<Comic> comics) {
                 view.hideProgressFooter();
+                view.hideMessage();
                 view.showMoreData(comics);
             }
 
