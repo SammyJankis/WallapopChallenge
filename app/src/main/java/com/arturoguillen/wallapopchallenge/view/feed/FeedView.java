@@ -18,5 +18,7 @@ public interface FeedView {
 
     void showMessage(@StringRes int stringId);
 
+    void hideMessage();
+
     void showMoreData(ArrayList<Comic> comics);
 }
