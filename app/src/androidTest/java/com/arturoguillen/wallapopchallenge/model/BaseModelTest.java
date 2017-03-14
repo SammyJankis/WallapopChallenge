@@ -1,21 +1,17 @@
 package com.arturoguillen.wallapopchallenge.model;
 
-import com.arturoguillen.wallapopchallenge.BuildConfig;
+import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by arturo.guillen on 14/03/2017.
  */
-
-@RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@RunWith(AndroidJUnit4.class)
 public class BaseModelTest {
 
     BaseModel baseModel;

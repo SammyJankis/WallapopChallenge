@@ -1,6 +1,7 @@
 package com.arturoguillen.wallapopchallenge.presenter;
 
-import com.arturoguillen.wallapopchallenge.BuildConfig;
+import android.support.test.runner.AndroidJUnit4;
+
 import com.arturoguillen.wallapopchallenge.fabric.MockMarvelModel;
 import com.arturoguillen.wallapopchallenge.model.MarvelModel;
 import com.arturoguillen.wallapopchallenge.view.feed.FeedView;
@@ -8,8 +9,6 @@ import com.arturoguillen.wallapopchallenge.view.feed.FeedView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -20,8 +19,7 @@ import static org.mockito.Mockito.verify;
  * Created by artu on 3/14/17.
  */
 
-@RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@RunWith(AndroidJUnit4.class)
 public class FeedPresenterTest {
 
     FeedPresenter feedPresenter;
