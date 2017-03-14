@@ -30,6 +30,10 @@ public class FeedPresenter extends BasePresenter implements PresenterInterface<F
     public FeedPresenter() {
     }
 
+    public FeedPresenter(MarvelModel marvelModel) {
+        this.marvelModel = marvelModel;
+    }
+
     public void getComicsForCharacter(int characterId, int offset) {
         view.showProgressFooter();
         getComicsDisposable = marvelModel.getComicsForCharacter(characterId, offset, new MarvelModel.ResponseObserver() {

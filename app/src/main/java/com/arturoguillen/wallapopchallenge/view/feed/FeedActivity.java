@@ -98,7 +98,7 @@ public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnCl
     }
 
     private boolean retrieveInitialData() {
-        int offset= recyclerView.getAdapter().getItemCount();
+        int offset = recyclerView.getAdapter().getItemCount();
         if (offset == 0) {
             retrieveData(offset);
             return true;
@@ -169,7 +169,7 @@ public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnCl
 
     @OnClick(R.id.text_message_feed)
     public void onClick(View view) {
-        if(!retrieveInitialData()){
+        if (!retrieveInitialData()) {
             retrieveMoreData();
         }
     }

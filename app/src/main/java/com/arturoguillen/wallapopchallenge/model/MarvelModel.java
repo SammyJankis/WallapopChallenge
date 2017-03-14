@@ -31,7 +31,7 @@ public class MarvelModel extends BaseModel {
 
     }
 
-    public MarvelModel(MarvelApi marvelApi){
+    public MarvelModel(MarvelApi marvelApi) {
         this.marvelApi = marvelApi;
     }
 
