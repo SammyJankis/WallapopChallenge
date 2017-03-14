@@ -1,60 +1,42 @@
 package com.arturoguillen.wallapopchallenge.fabric;
 
-import com.arturoguillen.wallapopchallenge.entity.Comic;
-import com.arturoguillen.wallapopchallenge.entity.ComicDataContainer;
-import com.arturoguillen.wallapopchallenge.entity.ComicDataWrapper;
-import com.arturoguillen.wallapopchallenge.entity.Image;
+import com.arturoguillen.wallapopchallenge.model.MarvelModel;
 
-import java.util.ArrayList;
+import io.reactivex.disposables.Disposable;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
- * Created by arturo.guillen on 14/03/2017.
+ * Created by artu on 3/14/17.
  */
 
 public class MockMarvelModel {
 
-    public static ComicDataWrapper getFakeComicDataWrapper() {
-        ComicDataWrapper fakeComicDataWrapper = new ComicDataWrapper();
-        fakeComicDataWrapper.setData(getFakeComicDataContainer());
-        return fakeComicDataWrapper;
-    }
+    public static MarvelModel getMarvelModelMock() {
 
-    public static ComicDataContainer getFakeComicDataContainer() {
-        ComicDataContainer fakeComicDataContainer = new ComicDataContainer();
+        MarvelModel marvelModel = mock(MarvelModel.class);
+        Disposable disposable = new Disposable() {
+            @Override
+            public void dispose() {
 
-        ArrayList<Comic> fakeComics = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            fakeComics.add(getFakeComic(i));
-        }
+            }
 
-        fakeComicDataContainer.setResults(fakeComics);
-        return fakeComicDataContainer;
-    }
+            @Override
+            public boolean isDisposed() {
+                return false;
+            }
+        };
+        when(
+                marvelModel.getComicsForCharacter(
+                        anyInt(),
+                        anyInt(),
+                        any(MarvelModel.ResponseObserver.class)
+                )
+        ).thenReturn(disposable);
 
-    public static Comic getFakeComic(int counter) {
-        Comic fakeComic = new Comic();
-        fakeComic.setId(counter);
-        fakeComic.setDescription("Description" + counter);
-        fakeComic.setDigitalId(counter);
-        fakeComic.setIssueNumber((double) counter);
-        fakeComic.setTitle("Title" + counter);
-        fakeComic.setVariantDescription("VariantDescription" + counter);
-
-        ArrayList<Image> fakeImages = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            fakeImages.add(getFakeImage());
-        }
-
-        fakeComic.setThumbnail(fakeImages.get(0));
-        fakeComic.setImages(fakeImages);
-        return fakeComic;
-    }
-
-    public static Image getFakeImage() {
-        Image fakeImage = new Image();
-        fakeImage.setExtension("Extension");
-        fakeImage.setPath("Path");
-
-        return fakeImage;
+        return marvelModel;
     }
 }
