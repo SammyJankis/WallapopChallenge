@@ -26,7 +26,11 @@ public class MockMarvelApi {
                         anyString(),
                         anyString()
                 )
-        ).thenReturn(Observable.just(MockMarvelModel.getFakeComicDataWrapper()));
+        ).thenReturn(
+                Observable.just(
+                        MockMarvelModel.getFakeComicDataWrapper()
+                )
+        );
 
         return marvelApi;
     }
