@@ -31,6 +31,10 @@ public class MarvelModel extends BaseModel {
 
     }
 
+    public MarvelModel(MarvelApi marvelApi){
+        this.marvelApi = marvelApi;
+    }
+
     public interface ResponseObserver {
 
         void onCompleted(ArrayList<Comic> comics);
