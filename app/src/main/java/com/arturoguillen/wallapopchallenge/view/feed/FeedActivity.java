@@ -19,7 +19,8 @@ import com.arturoguillen.wallapopchallenge.view.BaseActivity;
 import com.arturoguillen.wallapopchallenge.view.detail.DetailActivity;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -131,7 +132,7 @@ public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnCl
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             FeedAdapter adapter = (FeedAdapter) recyclerView.getAdapter();
-            adapter.appendFeedContent((ArrayList<Comic>) savedInstanceState.getSerializable(RECYCLEVIEW_CONTENT));
+            adapter.appendFeedContent((List<Comic>) savedInstanceState.getSerializable(RECYCLEVIEW_CONTENT));
             recyclerView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(RECYCLERVIEW_STATE));
             presenter.onRestoreInstanceState(savedInstanceState);
         }
@@ -142,7 +143,7 @@ public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnCl
         super.onSaveInstanceState(outState);
         FeedAdapter adapter = (FeedAdapter) recyclerView.getAdapter();
         outState.putParcelable(RECYCLERVIEW_STATE, recyclerView.getLayoutManager().onSaveInstanceState());
-        outState.putSerializable(RECYCLEVIEW_CONTENT, adapter.getFeedContent());
+        outState.putSerializable(RECYCLEVIEW_CONTENT, (Serializable) adapter.getFeedContent());
         presenter.onSaveInstanceState(outState);
     }
 
@@ -175,7 +176,7 @@ public class FeedActivity extends BaseActivity implements FeedView, FeedItemOnCl
     }
 
     @Override
-    public void showMoreData(ArrayList<Comic> comics) {
+    public void showMoreData(List<Comic> comics) {
         FeedAdapter adapter = (FeedAdapter) recyclerView.getAdapter();
         adapter.appendFeedContent(comics);
     }

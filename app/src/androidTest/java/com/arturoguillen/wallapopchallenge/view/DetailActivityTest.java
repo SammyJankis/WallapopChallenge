@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -50,7 +51,7 @@ public class DetailActivityTest {
             fakeImage.setPath("Path");
             fakeComic.setThumbnail(fakeImage);
 
-            ArrayList<Image> images = new ArrayList<>();
+            List<Image> images = new ArrayList<>();
             images.add(fakeImage);
             fakeComic.setImages(images);
 

@@ -9,6 +9,7 @@ import com.arturoguillen.wallapopchallenge.entity.Image;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Singleton;
 
@@ -49,7 +50,7 @@ public class TestMarvelModule {
     }
 
     @Provides
-    ComicDataContainer provideFakeComicDataContainer(ArrayList<Comic> fakeComics) {
+    ComicDataContainer provideFakeComicDataContainer(List<Comic> fakeComics) {
         ComicDataContainer fakeComicDataContainer = new ComicDataContainer();
         fakeComicDataContainer.setResults(fakeComics);
 
@@ -57,28 +58,28 @@ public class TestMarvelModule {
     }
 
     @Provides
-    ArrayList<Comic> provideFakeComics(Comic fakeComic0,
-                                       Comic fakeComic1,
-                                       Comic fakeComic2,
-                                       Comic fakeComic3,
-                                       Comic fakeComic4,
-                                       Comic fakeComic5,
-                                       Comic fakeComic6,
-                                       Comic fakeComic7,
-                                       Comic fakeComic8,
-                                       Comic fakeComic9,
-                                       Comic fakeComic10,
-                                       Comic fakeComic11,
-                                       Comic fakeComic12,
-                                       Comic fakeComic13,
-                                       Comic fakeComic14,
-                                       Comic fakeComic15,
-                                       Comic fakeComic16,
-                                       Comic fakeComic17,
-                                       Comic fakeComic18,
-                                       Comic fakeComic19) {
+    List<Comic> provideFakeComics(Comic fakeComic0,
+                                  Comic fakeComic1,
+                                  Comic fakeComic2,
+                                  Comic fakeComic3,
+                                  Comic fakeComic4,
+                                  Comic fakeComic5,
+                                  Comic fakeComic6,
+                                  Comic fakeComic7,
+                                  Comic fakeComic8,
+                                  Comic fakeComic9,
+                                  Comic fakeComic10,
+                                  Comic fakeComic11,
+                                  Comic fakeComic12,
+                                  Comic fakeComic13,
+                                  Comic fakeComic14,
+                                  Comic fakeComic15,
+                                  Comic fakeComic16,
+                                  Comic fakeComic17,
+                                  Comic fakeComic18,
+                                  Comic fakeComic19) {
 
-        ArrayList<Comic> fakeComics = new ArrayList<>();
+        List<Comic> fakeComics = new ArrayList<>();
         fakeComics.add(fakeComic0);
         fakeComics.add(fakeComic1);
         fakeComics.add(fakeComic2);
@@ -106,7 +107,7 @@ public class TestMarvelModule {
     int counter = 0;
 
     @Provides
-    Comic provideFakeComic(ArrayList<Image> fakeImages) {
+    Comic provideFakeComic(List<Image> fakeImages) {
         Comic fakeComic = new Comic();
         fakeComic.setId(counter);
         fakeComic.setDescription("Description" + counter);
@@ -121,8 +122,8 @@ public class TestMarvelModule {
     }
 
     @Provides
-    ArrayList<Image> provideFakeImages(Image fakeImage) {
-        ArrayList<Image> fakeImages = new ArrayList<>();
+    List<Image> provideFakeImages(Image fakeImage) {
+        List<Image> fakeImages = new ArrayList<>();
         fakeImages.add(fakeImage);
         fakeImages.add(fakeImage);
 

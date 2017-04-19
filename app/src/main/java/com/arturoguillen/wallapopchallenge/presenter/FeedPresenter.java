@@ -7,7 +7,7 @@ import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.model.MarvelModel;
 import com.arturoguillen.wallapopchallenge.view.feed.FeedView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -35,7 +35,7 @@ public class FeedPresenter implements PresenterInterface<FeedView>, BasePresente
         view.showProgressFooter();
         getComicsDisposable = marvelModel.getComicsForCharacter(characterId, offset, new MarvelModel.ResponseObserver() {
             @Override
-            public void onCompleted(ArrayList<Comic> comics) {
+            public void onCompleted(List<Comic> comics) {
                 view.hideProgressFooter();
                 view.hideMessage();
                 view.showMoreData(comics);

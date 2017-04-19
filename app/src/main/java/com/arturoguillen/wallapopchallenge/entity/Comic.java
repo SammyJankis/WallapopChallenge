@@ -3,7 +3,7 @@ package com.arturoguillen.wallapopchallenge.entity;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by artu on 3/8/17.
@@ -35,7 +35,7 @@ public class Comic implements Serializable {
     private Image thumbnail;
 
     @SerializedName("images")
-    private ArrayList<Image> images;
+    private List<Image> images;
 
     public int getId() {
         return id;
@@ -93,11 +93,11 @@ public class Comic implements Serializable {
         this.thumbnail = thumbnail;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 }

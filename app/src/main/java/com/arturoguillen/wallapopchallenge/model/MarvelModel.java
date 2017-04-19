@@ -6,7 +6,7 @@ import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.entity.ComicDataWrapper;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -32,7 +32,7 @@ public class MarvelModel extends BaseModel {
 
     public interface ResponseObserver {
 
-        void onCompleted(ArrayList<Comic> comics);
+        void onCompleted(List<Comic> comics);
 
         void onError(Throwable e);
     }

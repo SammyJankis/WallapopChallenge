@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -36,7 +36,7 @@ public class MarvelModelTest {
     public void test_getComicsByCharacter_isCalled() throws Exception {
         MarvelModel.ResponseObserver responseObserver = new MarvelModel.ResponseObserver() {
             @Override
-            public void onCompleted(ArrayList<Comic> comics) {
+            public void onCompleted(List<Comic> comics) {
 
             }
 

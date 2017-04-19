@@ -9,6 +9,7 @@ import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by artu on 3/9/17.
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class FeedAdapter extends RecyclerView.Adapter {
 
-    private ArrayList<Comic> feedContent;
+    private List<Comic> feedContent;
 
     private Picasso picasso;
     private FeedItemOnClickListener feedItemOnClickListener;
@@ -27,13 +28,13 @@ public class FeedAdapter extends RecyclerView.Adapter {
         this.feedItemOnClickListener = feedItemOnClickListener;
     }
 
-    public void appendFeedContent(ArrayList<Comic> feedContent) {
+    public void appendFeedContent(List<Comic> feedContent) {
         int previousSize = this.feedContent.size();
         this.feedContent.addAll(feedContent);
         notifyItemRangeInserted(previousSize, feedContent.size());
     }
 
-    public ArrayList<Comic> getFeedContent() {
+    public List<Comic> getFeedContent() {
         return feedContent;
     }
 

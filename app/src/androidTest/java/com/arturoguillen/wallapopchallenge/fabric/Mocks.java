@@ -6,6 +6,7 @@ import com.arturoguillen.wallapopchallenge.entity.ComicDataWrapper;
 import com.arturoguillen.wallapopchallenge.entity.Image;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by arturo.guillen on 14/03/2017.
@@ -22,7 +23,7 @@ public class Mocks {
     public static ComicDataContainer getFakeComicDataContainer() {
         ComicDataContainer fakeComicDataContainer = new ComicDataContainer();
 
-        ArrayList<Comic> fakeComics = new ArrayList<>();
+        List<Comic> fakeComics = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             fakeComics.add(getFakeComic(i));
         }
@@ -40,7 +41,7 @@ public class Mocks {
         fakeComic.setTitle("Title" + counter);
         fakeComic.setVariantDescription("VariantDescription" + counter);
 
-        ArrayList<Image> fakeImages = new ArrayList<>();
+        List<Image> fakeImages = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             fakeImages.add(getFakeImage());
         }

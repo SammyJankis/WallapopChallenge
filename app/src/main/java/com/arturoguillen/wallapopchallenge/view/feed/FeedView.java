@@ -4,7 +4,7 @@ import android.support.annotation.StringRes;
 
 import com.arturoguillen.wallapopchallenge.entity.Comic;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by artu on 3/8/17.
@@ -20,5 +20,5 @@ public interface FeedView {
 
     void hideMessage();
 
-    void showMoreData(ArrayList<Comic> comics);
+    void showMoreData(List<Comic> comics);
 }
