@@ -17,7 +17,7 @@ import io.reactivex.disposables.Disposable;
  * Created by artu on 3/8/17.
  */
 
-public class FeedPresenter extends BasePresenter implements PresenterInterface<FeedView> {
+public class FeedPresenter implements PresenterInterface<FeedView>, BasePresenterInterface {
 
     private FeedView view;
 
