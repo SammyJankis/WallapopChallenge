@@ -2,6 +2,7 @@ package com.arturoguillen.wallapopchallenge.presenter;
 
 import android.os.Bundle;
 
+import com.arturoguillen.wallapopchallenge.BuildConfig;
 import com.arturoguillen.wallapopchallenge.R;
 import com.arturoguillen.wallapopchallenge.entity.Comic;
 import com.arturoguillen.wallapopchallenge.model.MarvelModel;
@@ -45,7 +46,8 @@ public class FeedPresenter implements PresenterInterface<FeedView>, BasePresente
             public void onError(Throwable e) {
                 view.hideProgressFooter();
                 view.showMessage(R.string.try_again);
-                e.printStackTrace();
+                if(BuildConfig.DEBUG)
+                    e.printStackTrace();
             }
         });
     }
