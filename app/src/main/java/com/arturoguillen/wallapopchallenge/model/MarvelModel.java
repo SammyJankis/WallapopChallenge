@@ -25,12 +25,7 @@ public class MarvelModel extends BaseModel {
     @Inject
     public MarvelApi marvelApi;
 
-    public
     @Inject
-    MarvelModel() {
-
-    }
-
     public MarvelModel(MarvelApi marvelApi) {
         this.marvelApi = marvelApi;
     }

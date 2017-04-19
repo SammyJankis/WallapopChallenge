@@ -27,9 +27,6 @@ public class FeedPresenter implements PresenterInterface<FeedView>, BasePresente
     public MarvelModel marvelModel;
 
     @Inject
-    public FeedPresenter() {
-    }
-
     public FeedPresenter(MarvelModel marvelModel) {
         this.marvelModel = marvelModel;
     }
